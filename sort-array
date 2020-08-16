@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        
+        sort(nums);
+        return nums;
+       
+    }
+    void sort(vector<int>& nums)
+    {
+         if(nums.size()==1)
+            return ;
+        int val=nums[nums.size()-1];
+       
+        nums.pop_back();
+     
+        sort(nums);
+         cout<<nums.size()<<" "<<val<<endl;
+        insert(nums,val);
+        return;
+    }
+    
+    void insert(vector<int> &nums,int value)
+    {
+     
+        if(nums.size()==0 || nums[nums.size()-1]<value)
+        { 
+            nums.push_back(value);
+            return;
+        }
+        int val=nums[nums.size()-1];
+        nums.pop_back();
+        insert(nums,value);
+        nums.push_back(val);
+        return ;
+        
+    }
+};
+// sort array using recursion
