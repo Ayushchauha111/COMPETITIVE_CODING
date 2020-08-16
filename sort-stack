@@ -1,0 +1,39 @@
+void insert(stack<int>& s,int temp)
+{
+    if(s.size()==0|| s.top()<=temp)
+    {
+        s.push(temp);
+        return;
+    }
+    int val=s.top();
+    s.pop();
+    insert(s,temp);
+    s.push(val);
+    return ;
+    
+    
+}
+void sorting (stack<int> &s)
+{
+   if(s.size()==1)
+   {
+       return;
+   }
+   int val=s.top();
+   s.pop();
+   sorting(s);
+   insert(s,val);
+   return ;
+}
+
+
+int main()
+{
+  stack<int>s;
+  int n;
+  cin>>n;
+  for(int i=0;i<n;i++)
+  s.push(cin>>i);
+   sorting(s);
+   return ;
+}
