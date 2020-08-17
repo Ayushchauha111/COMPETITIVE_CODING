@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+set<vector<int>>s;
+void solve(vector<int> ip,vector<int> op)
+{
+    if(ip.size()==0)
+    {
+        s.insert(op);
+        cout<<op<<endl;
+        return;
+    }
+    vector<int>op1=op;
+    vector<int>op2=op;
+    op1.push_back(ip[0]);
+    ip.erase(ip.begin());
+    solve(ip,op1);
+    solve(ip,op2);
+    return;
+    
+}
+int main() {
+
+int t;
+cin>>t;
+while(t--)
+{
+    int n;
+    cin>>n;
+    vector<int> in(n);
+    for(int i=0;i<n;i++)
+    cin>>in[i];
+    
+    
+ 
+    
+    
+}
+
+
+	return 0;
+}
