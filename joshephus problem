@@ -1,0 +1,43 @@
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+void solve(vector<int>& v,int index,int k,int &ans)
+{
+    if(v.size()==1)
+    {
+        ans=v[0];
+        return;
+    }
+    
+  index=(index+k)%v.size();
+  v.erase(v.begin()+index);
+  solve(v,index,k,ans);
+  return;
+    
+    
+}
+int main()
+ {
+int t;
+cin>>t;
+while(t--)
+{
+    int n,k;
+    cin>>n;
+    cin>>k;
+    
+    vector<int> arr;
+    for(int i=1;i<=n;i++)
+    {
+        arr.push_back(i);
+    }
+    k=k-1;
+    int ans=-1;
+    int index=0;
+    solve(arr,index,k,ans);
+    cout<<ans<<endl;
+    
+    
+}
+	return 0;
+}
