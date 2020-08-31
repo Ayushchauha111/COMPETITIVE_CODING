@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int findKthsmallest(vector<int>& nums, int k) {
+        
+       priority_queue<int>maxh;
+        
+        for(auto val:nums)
+        {
+             maxh.push(val);
+            if(maxh.size()>k)
+            {
+                maxh.pop();
+            }
+        }
+        return maxh.top();
+        
+    }
+};
