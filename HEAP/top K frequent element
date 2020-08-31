@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+     
+        
+        // what is key in this question  th frequency
+        
+        unordered_map<int,int> hmap;
+        
+        for(auto val:nums)
+        {
+            hmap[val]++;
+        }
+        
+            
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> minh;
+        for(auto it=hmap.begin();it!=hmap.end();it++)
+        {
+            minh.push({it->second,it->first});
+            if(minh.size()>k)
+            {
+                minh.pop();
+            }
+            
+        }
+        vector<int> result;
+        while(minh.empty()==false)
+        {
+            result.push_back(minh.top().second);
+            minh.pop();
+        }
+
+        return result;
+    }
+};
