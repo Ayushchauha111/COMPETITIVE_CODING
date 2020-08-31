@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+ {
+
+
+   int t;
+   cin>>t;
+   while(t--)
+   {
+       long long n;
+       cin>>n;
+       vector<int> arr(n);
+       for(int i=0;i<n;i++)
+      {
+          cin>>arr[i];
+      }
+      
+      priority_queue<long long,vector<long long>,greater<long long>>minh;
+      for(auto val:arr)
+      {
+          minh.push(val);
+      }
+      long long total=0;
+    while(minh.size()>=2)
+    {
+        long long s1=minh.top();
+        minh.pop();
+        long long s2=minh.top();
+        minh.pop();
+        total+=s1+s2;
+        minh.push((s1+s2));
+        
+    }
+    cout<<total<<endl;
+   }
+   
+
+
+}
