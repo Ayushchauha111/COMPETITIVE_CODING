@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+        
+          string res="";
+         unordered_map<char,int> hmap;
+         for(auto val:s)
+         {
+             hmap[val]++;
+         }
+         priority_queue<pair<int,char>> maxh;
+         for(auto it=hmap.begin();it!=hmap.end();it++)
+         {
+             maxh.push({it->second,it->first});
+         }
+         while(maxh.empty()==false)
+         {
+             cout<<maxh.top().second<<endl;
+             for(int i=0;i<maxh.top().first;i++)
+             {
+                 res+=maxh.top().second;
+             }
+              maxh.pop();
+         }
+        
+        
+        return res;
+        
+    }
+};
