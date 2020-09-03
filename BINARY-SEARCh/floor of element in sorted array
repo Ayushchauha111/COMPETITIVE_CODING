@@ -38,3 +38,5 @@ int main()
     }
     
 }
+&&&&&
+lower_bound(v.begin(), v.end(), 30);
