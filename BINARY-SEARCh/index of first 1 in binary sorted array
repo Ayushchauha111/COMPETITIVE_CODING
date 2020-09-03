@@ -1,0 +1,18 @@
+// 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 
+// l r
+//   l  r
+//      l        r
+//               l               r
+
+
+left =8 right =16
+int left=0;
+int right=1;
+
+while(arr[right]<element)
+{
+  left=right;
+  right=r=right*2;
+}
+
+firstoccurence(element,left,right)
