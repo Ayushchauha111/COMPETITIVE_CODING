@@ -1,0 +1,37 @@
+
+arr of size n;
+
+//element can be present on i-1 i i+1 pos;
+int x; // element to be searched
+
+int left=0;
+int right=n-1;
+
+while(left<=right)
+{
+  int mid=left+right-left/2;
+  if(arr[mid]==x)
+  {  return mid;
+  }
+   if(arr[mid-1]==x && mid-1>0)
+  {
+  return mid-1;
+  }
+  if(arr[mid+1]==x && mid+1<n)
+  {
+  return mid+1;
+  }
+  if(arr[mid]>x)
+  {
+     right=mid-2;
+  }
+  else
+  {
+  left=mid+2;
+  }
+  
+   
+
+
+}
+
