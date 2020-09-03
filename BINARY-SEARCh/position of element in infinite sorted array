@@ -1,0 +1,20 @@
+int elemen;
+cin>>element;  //element to be searched
+  let element =7
+int left=0;
+int right=1;
+
+while(arr[right]<element)
+{
+  left=right;
+  right=r=right*2;
+}
+
+// 1 2 3  4 5 6 7 8 9 10 - - - - - - -
+// L R
+//   L    R
+//        L       R
+
+  // so left is 4   right is 8  and element is 7
+  
+  binarysearch(element,left,right)
