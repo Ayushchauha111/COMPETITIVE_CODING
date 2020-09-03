@@ -1,0 +1,82 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        
+        if(nums.size()==0)
+            return -1;
+       
+            
+    //find min
+        int index=minele(0,nums.size()-1,nums,target);
+      if(nums[index]==target)
+          return index;
+    //find range
+        
+        int rang1=bs(0,index-1,nums,target);
+        int rang2=bs(index,nums.size()-1,nums,target);
+        if(rang1!=-1)
+            return rang1;
+        else
+            if(rang2!=-1)
+                return rang2;
+        else
+            return -1;
+    
+    }
+    int bs(int low,int high,vector<int> nums,int target)
+    {
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            if(nums[mid]==target)
+            {
+                return mid;
+            }
+            else if(nums[mid]>target)
+            {
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        
+        return -1;
+    }
+    
+    
+    
+    
+    int minele(int low,int high,vector<int> nums,int target)
+    {
+         while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            int prev=(mid+nums.size()-1)%nums.size();
+            int next=(mid+1)%nums.size();
+            
+            
+            if(nums[mid]<=nums[prev] && nums[next]>=nums[mid])
+            {
+                return mid;
+            }
+            else
+                if(nums[high]>=nums[mid])
+                high=mid-1;
+            else
+                if(nums[mid]>=nums[low])
+                low=mid+1;
+       
+        }
+        
+        return -1;
+    }
+    
+    
+  
+    
+    
+    
+    
+};
