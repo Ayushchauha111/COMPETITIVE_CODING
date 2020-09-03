@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n,x;
+        cin>>n>>x;
+        vector<int> arr(n);
+        for(int i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+        
+        int left=0;
+        int right=n-1;
+        int temp=-1;
+        while(left<=right)
+        {
+            int mid=left+right-left/2;
+            if(arr[mid]==x)
+            {
+                 temp=mid;
+                 break;
+            }else if(arr[mid]>x)
+            {
+                temp=mid;
+                left=mid+1;
+               
+            }
+            else
+            {
+               left=mid+1;
+            }
+        }
+        cout<<temp<<endl;
+    }
+    
+}
+
+
+
+
+&&&&&&
+
+upper_bound(v.begin(), v.end(), 30);
