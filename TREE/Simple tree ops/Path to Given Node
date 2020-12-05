@@ -1,0 +1,46 @@
+simple as fuck------
+
+root->val==k ho to true ya root->left true return kre ya root->left true return kre to push kro  jb ancestor nikaala to fs gye dekh lena vo wla abhi
+
+ bool preorder(TreeNode*A ,vector<int> & res,int B)
+ {
+     if(A==NULL)
+     {
+         return false;
+     }
+      if(A->val==B || preorder(A->left,res,B)==true|| preorder(A->right,res,B)==true)
+     {
+         res.push_back(A->val);
+         return true;
+     }
+     
+     return false;
+ }
+vector<int> Solution::solve(TreeNode* A, int B) {
+    vector<int> res;
+    preorder(A,res,B);
+    reverse(res.begin(),res.end());
+    return res;
+}
+ancestor wale m isme dikkat aayi to ye sahi code tha jo gfg pr mila
+ bool preorder(TreeNode*A ,vector<int> & res,int B)
+ {
+     if(A==NULL)
+     {
+         return false;
+     }
+     res.push_back(A->val);
+      if(A->val==B )
+     {
+         return true;
+     }
+     if(A->left && preorder(A->left-----)==true)
+       return true;
+      if(A->left && preorder(A->right----)==true)
+     return true;
+     A.pop_back()
+     }
+     
+     
+     return false;
+ }
