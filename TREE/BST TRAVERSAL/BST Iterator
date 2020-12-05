@@ -1,0 +1,34 @@
+Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
+The first call to next() will return the smallest number in BST. Calling next() again will return the next smallest number in the BST, and so on.
+next() and hasNext() should run in average O(1) time and uses O(h) memory
+0(1) m krna tha isliye mene stack use kiya
+step1-root aur root k left ko stack m push kr diya
+
+uske baad jb bhi next use hua to mene pop kiya stack ka top aur top k right m gya kyuki vo usse jst badi value hogi
+ stack<TreeNode*> s;
+ 
+
+BSTIterator::BSTIterator(TreeNode *root) {
+  
+     while(root)
+     {
+         s.push(root);
+         root=root->left;
+     }
+
+}
+
+/** @return whether we have a next smallest number */
+bool BSTIterator::hasNext() {
+ return !s.empty();    stack empty  to false nhi to true
+}
+
+/** @return the next smallest number */
+int BSTIterator::next() {
+  
+  TreeNode* temp=s.top();      
+  s.pop();
+  BSTIterator(temp->right);
+  return temp->val;
+
+}
