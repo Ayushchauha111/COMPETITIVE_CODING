@@ -1,0 +1,51 @@
+Given two Binary Trees A and B, you need to merge them in a single binary tree.
+A =   2
+
+      / \
+
+     1   4
+
+    /
+
+   5
+
+
+B =   3
+      / \
+      6  1
+      \   \
+       2   7
+       
+op-- 5
+    / \
+   7   5
+  / \   \ 
+ 5   2   7
+ 
+ TreeNode* Solution::solve(TreeNode* A, TreeNode* B) {
+    
+  if(A==NULL && B==NULL)    dono tree nhi h to  null return
+  {
+       return NULL;
+  }
+  else if(A==NULL)        kevel B tree h to A return
+  {
+       return B;
+  }
+  else if(B==NULL)      kevel A tree h to A return
+  {
+      return A;
+  }
+  else               dono present to A->val m A aur B dono ki daal do
+  {
+      A->val=A->val+B->val;
+  }
+
+ TreeNode* left=solve(A->left,B->left);      left tree ko solve kr laao
+ TreeNode* right=solve(A->right,B->right);  right tree ko solve kr laao
+ 
+ A->left=left;    root->left ko left se point kr do
+ A->right=right;   root->right ko right se point kr do
+ return A;
+
+}
