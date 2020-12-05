@@ -1,0 +1,58 @@
+BST hain bhai
+approach -> bhai 2 stack bnao ek left ka ek right ka 
+loop chalo jb tk dono empty nhi hain  
+int Solution::t2Sum(TreeNode* A, int B) {
+    stack<TreeNode*> lefttree;
+    stack<TreeNode*> righttree;
+    
+    TreeNode* curr=A;
+    while(curr)
+    {
+        lefttree.push(curr);
+        curr=curr->left;
+    }
+    curr=A;
+    while(curr)
+    {
+        righttree.push(curr);
+        curr=curr->right;
+    }
+    
+    while(!lefttree.empty() && !righttree.empty())
+    {
+        TreeNode* ltop=lefttree.top();
+        TreeNode* rtop=righttree.top();
+        
+        if(ltop->val+rtop->val==B && ltop!=rtop)
+            {
+                return true;
+            }
+           else if(ltop->val+rtop->val<B)   agr left ka top + right ka top chota h to left ko pop kro aur left k right wale saare fill kr do kyuki vo value ko bda krnege
+            {
+                
+                lefttree.pop();
+                ltop=ltop->right;
+                while(ltop)
+                {
+                    lefttree.push(ltop);
+                    ltop=ltop->left;
+                }
+                
+                
+            }else    agr left ka top + right ka top bda h to right ko pop kro aur right k left wale saare fill kr do  kyuki vo value ko chota krnege
+            {
+                
+                righttree.pop();
+                rtop=rtop->left;
+                while(rtop)
+                {
+                     righttree.push(rtop);
+                     rtop=rtop->right;
+                }
+               
+                
+            }
+        
+    }
+    return false;
+}
