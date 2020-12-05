@@ -1,0 +1,34 @@
+Two elements of a binary search tree (BST) are swapped by mistake.
+Tell us the 2 values swapping which the tree will be restored
+
+A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?
+
+brute with 0(N)
+void inorder(TreeNode* A,vector<int> & inor)
+{
+    if(A==NULL)
+    return;
+    inorder(A->left,inor);
+    inor.push_back(A->val);
+    inorder(A->right,inor);
+    
+}
+vector<int> Solution::recoverTree(TreeNode* A) {
+    vector<int> inor;
+    vector<int> sorted;
+    inorder(A,inor);
+    sorted=inor;
+    sort(sorted.begin(),sorted.end());
+    vector<int> ans;
+    for(int i=inor.size()-1;i>=0;i--)
+    {
+        if(inor[i]!=sorted[i])
+        {
+            ans.push_back(inor[i]);
+        }
+    }
+    return ans;
+}
+
+
+have to donr it in constant space
