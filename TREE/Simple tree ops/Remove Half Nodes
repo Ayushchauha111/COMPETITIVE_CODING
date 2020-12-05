@@ -1,0 +1,31 @@
+Half nodes are nodes which have only one child.
+Leaves should not be touched as they have both children as NULL.
+
+
+TreeNode* Solution::solve(TreeNode* root) {
+    
+    if(!root) return root;
+    if(!root->left && !root->right)  return root;
+    if(!root->left) return solve(root->right); agr root->left nhi h to solution root->right se jo return ho le aao jaao chalo bhaago
+    if(!root->right) return solve(root->left); agr root->right nhi h root->left se jo return aaye  le aao chalo bhaago
+    
+    root->left=solve(root->left);
+    root->right=solve(root->right);
+    return root;
+}
+            1
+          /   \
+         2     3
+        / \     \
+       4   5     6
+       
+     op-    1
+          /   \
+         2     6
+        / \
+
+       4   5
+       
+       leaf node root return kr rhe h apna ;
+       
+       jb 3 pr aayega to we are returnning jo 6 return kr rha h same agr 6 ka bhi left nhi hota to 6 ka jo right right krta whi root ko return krte
