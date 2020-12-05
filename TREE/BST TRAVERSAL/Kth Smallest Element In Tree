@@ -1,0 +1,35 @@
+brute-pushed into heap
+better beacause it is bst
+
+     4
+   2   7
+  1     9
+  k=4
+  ans=>7
+  
+  so count the nodes in left till you reach at k value
+  int count(TreeNode* A)
+ {
+     if (A==NULL)
+     return 0;
+     else
+     return 1+count(A->left)+count(A->right);
+ }
+int Solution::kthsmallest(TreeNode* A, int B) {
+    
+    if(A==NULL)
+    {
+        return 0;
+    }
+    int leftcount=count(A->left);      left ka count btaoo bhai
+    if(leftcount+1==B)   agar left ka count + 1 ==B hogya to root chor h
+    {
+        return A->val;
+    }else if(leftcount+1>B)   agr left ka count+1 > B mtlb chor left m hee hain with same B value
+    {
+        return kthsmallest(A->left,B);
+    }else   agr leftcount+1<B mtln chor right m h aur B ki value B-(leftCount+1) bachi h
+    {
+        return kthsmallest(A->right,B-(leftcount+1));
+    }
+}
