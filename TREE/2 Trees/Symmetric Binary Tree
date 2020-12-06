@@ -1,0 +1,28 @@
+Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center)
+do tree bnao aur identival check kro
+root check krne k baad phle tree m left m jaoo aur dusre tree m right m jaao
+int ismirror(TreeNode* tree1,TreeNode* tree2)
+ {
+  if(tree1==NULL && tree2==NULL)
+      return 1;
+  else if(tree1==NULL)
+    return 0;
+  else if(tree2==NULL)
+    return 0;
+  else if(tree1->val!=tree2->val)
+    return 0;
+   
+   return tree1->val==tree2->val && ismirror(tree1->right,tree2->left) && ismirror(tree1->left,tree2->right);
+  
+     
+ }
+int Solution::isSymmetric(TreeNode* A) {
+    
+    
+    int val=ismirror(A,A);
+    if(val==1)
+      return true;
+    else 
+      return false;
+    
+}
