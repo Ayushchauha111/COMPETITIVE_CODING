@@ -1,0 +1,48 @@
+ip-      1
+        / \
+       2   5
+      / \   \
+     3   4   6
+op-
+   1
+    \
+     2
+      \
+       3
+        \
+         4
+          \
+           5
+            \
+             6
+  
+  
+  TreeNode* Solution::flatten(TreeNode* root) {
+  
+  TreeNode* sol=root;
+  flatten(sol);
+  return root;
+  }
+  
+  voi flatten(TreeNode* root)
+  {
+     if(root==NULL)
+     return root;
+     
+    flatten(root->left);
+    flatten(root->right);
+    
+   TreeNode* right=root->right;
+  if(root->left!=NULL)
+        {
+            root->right=root->left;
+            root->left=NULL;
+           
+            while(root->right!=NULL)
+                root=root->right;
+            
+            root->right=right;
+        
+        }
+  }
+             
