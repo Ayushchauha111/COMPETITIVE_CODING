@@ -1,0 +1,41 @@
+Vertical Order traversal of Binary Tree
+
+map aur bfs simple  
+root level 0  left -1 right +1
+
+vector<vector<int> > Solution::verticalOrderTraversal(TreeNode* A) {
+    if(A==NULL)
+    {
+        return {};
+    }
+    map<int,vector<int>>mp;
+    queue<pair<TreeNode*,int>> q;
+    int level=0;
+    q.push({A,level});
+    while(q.size()!=0)
+    {
+        int count=q.size();
+        for(int i=0;i<count;i++)
+        {
+            TreeNode* temp=q.front().first;
+            level=q.front().second;                         hr level pr +1 -1 krna tha yaha mgalata tha
+            mp[level].push_back(temp->val);
+            q.pop();
+            if(temp->left!=NULL)
+            {
+                q.push({temp->left,level+1});
+            }
+            if(temp->right!=NULL)
+            {
+                q.push({temp->right,level-1});
+            }
+            }
+    }
+    vector<vector<int>> ans;
+    for(auto it=mp.begin();it!=mp.end();it++)
+    {
+        ans.push_back(it->second);
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+}
