@@ -1,0 +1,52 @@
+jinki slope same h unko print krna h normally
+            1
+          /   \
+         4      2
+        / \      \
+       8   5      3
+          / \    /
+         9   7  6
+    op-[1, 2, 3, 4, 5, 7, 6, 8, 9]
+    
+    1 2 3  same slope
+    4 5 7 6 same slope
+    8 9 same slope
+    
+    root->level 0
+    root->right same level as root
+    root->left level-root ka level
+    
+    aur map m store  ;
+    ib m globally km he use kro
+    
+    
+    
+    oid fun(TreeNode* A,int slope,map<int,vector<int>> &mp)
+ {
+     if(A==NULL)
+     {
+         return;
+     }
+     mp[slope].push_back(A->val);
+     
+     fun(A->left,slope+1,mp);
+     fun(A->right,slope,mp);
+     return;
+     
+     
+     
+ }
+vector<int> Solution::solve(TreeNode* A) {
+   vector<int> ans;
+   map<int,vector<int>>mp;
+   fun(A,0,mp);
+   
+   for(auto v:mp)
+   {
+       for(auto x:v.second)
+           ans.push_back(x);
+      
+   }
+   return ans;
+   
+}
