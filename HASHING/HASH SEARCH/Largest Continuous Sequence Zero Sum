@@ -1,1 +1,74 @@
+REFER-striver hashing playlist
+
+Input:  {1 ,2 ,-2 ,4 ,-4}
+Output: {2 ,-2 ,4 ,-4}
+
+trick
+[a b c d e f g h]
+a se f ka sum S h
+a se c ka sum S h
+to d se f ka sum 0 
+bs yahi krna h
+
+
+krna kese h-
+variable bnao ek for loop chaloo variable m value add krte raho
+agr value 0 hee to length ko comapre kro
+
+so dry run
+s=1        push (s,0) in map
+s=1+2=3    push(s,1) in map
+s=3-2=1    we found 1 in map so length compare kro
+s=1+4=5    push(5,3)
+s=5-4=1    we found 1 in map so length compare kro
+length compare k saath saath firstindex ans lastindex set kro
+ 
+
+vector<int> Solution::lszero(vector<int> &A) {
+    
+    unordered_map<int,int> mp;
+    int maxi=INT_MIN;
+    int firstindex=-1;
+    int lastindex=-1;
+    int sum=0;
+    for(int i=0;i<A.size();i++)
+    {
+        sum+=A[i];
+       if(sum==0)     sum==0 to length compare kro aur firsst and last index set kro
+       {
+               firstindex=0;
+               lastindex=i;
+               maxi=i+1;
+       }
+       else
+       {
+           if(mp.find(sum)!=mp.end())                map m mil gya h sum to length compare kro aur firsst and last index set kro
+                                   {
+                         if((i-mp[sum])>maxi)
+                               {
+                firstindex=mp[sum]+1;
+                lastindex=i;
+                maxi=i-mp[sum];
+                                      }
+                                   }
+          else                nhi mila map m push kro sum and index;
+            { 
+                
+                  mp[sum]=i;   
+            }
+             
+                
+            }
+    }
+    
+    
+    vector<int> ans;
+    if(firstindex==-1)
+    return {};
+    for(int i=firstindex;i<=lastindex;i++)
+      ans.push_back(A[i]);
+return ans;
+}
+
+
 
