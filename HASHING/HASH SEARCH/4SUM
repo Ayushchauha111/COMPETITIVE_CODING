@@ -1,0 +1,74 @@
+Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
+
+unique quadrplets ki bjah se 4 conditions
+
+REFER- striver hashing playlist
+
+
+BRUTE-   3 for loop + binary search o(N3logn)
+
+optimal - 2 for loop+ 2 pointers (O(n2))
+
+so krna kya h ---- 
+i j loop chalo  unki values ko add krke targer-add pointer approach se search kro aur duplicates ata the end hadle kro sbke
+
+
+
+
+vector<vector<int> > Solution::fourSum(vector<int> &A, int B) {
+    vector<vector<int>> ans;
+    if(A.empty())
+      return ans;
+    sort(A.begin(),A.end());              //array-1 2 3 2 3 2 4 4 4 1       sort kyuuki kyuki pointer approach lgaaani thi   1 1 2 2 2 3 3 4 4 4   target =9          
+    int n=A.size();
+    for(int i=0;i<n;i++)
+    {
+        for(int j=i+1;j<n;j++)
+        {
+            
+                   int target=B-(A[i]+A[j]);
+                   int front=j+1;   //front j k baad wala hamesha
+                   int back=n-1;    //back last wala index
+                   while(front<back)
+                   {
+                       if(A[front]+A[back]>target)          target se bda  2+7>7  to  back ko --
+                       {
+                           back--;
+                           
+                       }else if(A[front]+A[back]<target)        target se chota 2+3<7  front ++
+                       {
+                           front++;
+                       }
+                       else   // A[front]+A[back]==target          target equal ho gya  add kro and m aur front back ko aange peeche kr do duplicates k liye
+                       {
+                           vector<int> quad(4,0);
+                           quad[0]=A[i];
+                           quad[1]=A[j];
+                           quad[2]=A[front];
+                           quad[3]=A[back];
+                           ans.push_back(quad);
+                           
+                           while(front<back && A[back]==quad[3])             duplicates handle for back
+                           {
+                               --back;
+                           }
+                            while(front<back && A[front]==quad[2])     duplicates handle for front
+                           {
+                              ++front;
+                           }
+                           
+                           
+                       }
+                       
+                   }
+                    while(j+1<n && A[j]==A[j+1])        duplicates handle for J
+                           {
+                               ++j;
+                           }
+            
+        }
+        while(i+1<n && A[i+1]==A[i])               duplicates handle for I
+          ++i;
+    }
+    return ans;
+}
