@@ -1,0 +1,49 @@
+
+S = "ADOBECODEBANC"
+T = "ABC"
+
+minimum window is BANC
+
+1.map bnao store kro T ko
+3.variable lelp T ki length ka jisse pta chale ki t k saare londe aa gye
+2.loop chalo S pr
+
+{
+  agr map m h to variable --
+   variable agr0 ho jaaye 
+   {
+   l or right pointer ko shi se move krna 
+}
+
+string Solution::minWindow(string A, string B) {
+    vector<int> m(256, 0);
+    for (auto c : B)  m[c]++;
+      
+    int count = B.size();
+    int l = 0, r =0, f = 0, lmin = INT_MAX;
+    
+    bool check=false;// to check at least for 1 time count is reaching 0
+    while (r < A.size())
+    {
+        if (m[A[r]] > 0)  count--;
+        m[A[r]]--;
+        r++;
+
+        if(count==0) check=true;             ye agr false rha to ans jo h "" honga 
+        
+        while (count == 0){
+            if (r - l < lmin){                          min length wala subarray chahhiye 
+                lmin = r - l;
+                f = l;
+            }
+            if (m[A[l]] >= 0)  count++;   jb L a pr pauch gya                     l ko r k pass tb tk laao jb rk count 0 rhe eg    d d e f a t h b c
+                                                                                                                L                R           l 4 aange move kr skta aur length bin min rh skti h
+            m[A[l]]++;    jb l start pr h 
+            l++;         l ko r tk pauchaoo count 00 rakhte huye  
+        }
+        
+        
+    }
+    if(check) return A.substr(f, lmin);
+    else return "";
+}
